@@ -1107,5 +1107,5 @@ do
     . $f
 done
 unset f
-
+export CCACHE=1
 addcompletions
