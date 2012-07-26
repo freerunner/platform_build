@@ -12,6 +12,8 @@ ARCH_ARM_HAVE_TLS_REGISTER      := true
 ARCH_ARM_HAVE_VFP               := true
 ARCH_ARM_HAVE_VFP_D32           := true
 ARCH_ARM_HAVE_NEON              := true
+ARCH_ARM_NEON_SUPPORTS_UNALIGNED_ACCESS := true
+ARCH_ARM_MEMCPY_ALIGNMENT_DIVIDER := 16
 
 # Note: Hard coding the 'tune' value here is probably not ideal,
 # and a better solution should be found in the future.
@@ -19,7 +21,9 @@ ARCH_ARM_HAVE_NEON              := true
 arch_variant_cflags := \
     -march=armv7-a \
     -mfloat-abi=softfp \
-    -mfpu=neon
+    -mfpu=neon \
+	-ftree-vectorize \
+	-ftree-vectorizer-verbose=1
 
 arch_variant_ldflags := \
 	-Wl,--fix-cortex-a8
